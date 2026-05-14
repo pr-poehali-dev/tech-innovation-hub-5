@@ -15,31 +15,31 @@ export function ServicesSection() {
           }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            Услуги
+            Практика
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Наши компетенции</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Глава 2. Подготовка к практическому экзамену</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-12 lg:gap-x-24">
           {[
             {
-              title: "Веб-разработка",
-              description: "Создание современных веб-приложений любой сложности",
+              title: "Этапы практического экзамена",
+              description: "Автодром → упражнения → город: что проверяют на каждом этапе и как это оценивается",
               direction: "top",
             },
             {
-              title: "UI/UX Дизайн",
-              description: "Проектирование удобных и красивых интерфейсов",
+              title: "Навыки на автодроме",
+              description: "Змейка, эстакада, гараж, разворот — пошаговая отработка каждого упражнения до автоматизма",
               direction: "right",
             },
             {
-              title: "Мобильные приложения",
-              description: "Кроссплатформенная разработка для iOS и Android",
+              title: "Вождение в городе",
+              description: "Перестроения, приоритеты, парковка — разбор реальных ситуаций из городского трафика",
               direction: "left",
             },
             {
-              title: "Консалтинг",
-              description: "Техническая экспертиза и стратегическое планирование",
+              title: "Ошибки и психология",
+              description: "Топ-10 причин провала на экзамене и техники сохранения спокойствия за рулём",
               direction: "bottom",
             },
           ].map((service, i) => (
@@ -87,7 +87,7 @@ function ServiceCard({
     >
       <div className="mb-3 flex items-center gap-3">
         <div className="h-px w-8 bg-foreground/30 transition-all duration-300 group-hover:w-12 group-hover:bg-foreground/50" />
-        <span className="font-mono text-xs text-foreground/60">0{index + 1}</span>
+        <span className="font-mono text-xs text-foreground/60">2.{index + 1}</span>
       </div>
       <h3 className="mb-2 font-sans text-2xl font-light text-foreground md:text-3xl">{service.title}</h3>
       <p className="max-w-sm text-sm leading-relaxed text-foreground/80 md:text-base">{service.description}</p>

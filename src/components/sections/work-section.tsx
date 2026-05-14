@@ -15,32 +15,32 @@ export function WorkSection() {
           }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            Проекты
+            Теория
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Избранные работы</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Глава 1. Подготовка к теоретическому экзамену</p>
         </div>
 
         <div className="space-y-6 md:space-y-8">
           {[
             {
-              number: "01",
-              title: "ТехноСтарт",
-              category: "Корпоративный портал",
-              year: "2024",
+              number: "1.1",
+              title: "Структура и содержание экзамена",
+              category: "20 вопросов, 20 минут, не более 2 ошибок",
+              year: "Теория",
               direction: "left",
             },
             {
-              number: "02",
-              title: "АльфаТрейд",
-              category: "Финтех платформа",
-              year: "2024",
+              number: "1.2",
+              title: "Эффективные методы изучения ПДД",
+              category: "Билеты, мнемоники, разбор сложных тем и практика онлайн",
+              year: "Методика",
               direction: "right",
             },
             {
-              number: "03",
-              title: "МедиаПульс",
-              category: "Медиа сервис",
-              year: "2023",
+              number: "1.3",
+              title: "Психологическая подготовка к тесту",
+              category: "Техники снятия стресса, режим дня, настрой перед экзаменом",
+              year: "Психология",
               direction: "left",
             },
           ].map((project, i) => (
