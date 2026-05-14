@@ -245,7 +245,7 @@ export default function Index() {
         </div>
 
         <div className="hidden md:block font-mono text-xs text-foreground/50 bg-foreground/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-foreground/20">
-          Учебный проект · 11 класс
+          Учебный проект · 10 класс
         </div>
       </nav>
 

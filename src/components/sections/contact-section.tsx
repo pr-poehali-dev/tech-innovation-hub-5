@@ -98,7 +98,7 @@ export function ContactSection({ scrollToSection }: { scrollToSection?: (index: 
           className={`mt-8 pt-5 border-t border-foreground/10 flex items-center justify-between transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
           style={{ transitionDelay: "750ms" }}
         >
-          <span className="font-mono text-xs text-foreground/30">Учебный проект · 2024</span>
+          <span className="font-mono text-xs text-foreground/30">Учебный проект · 2026</span>
           <span className="font-mono text-xs text-foreground/30">Как сдать на права с первого раза</span>
         </div>
       </div>
