@@ -1,183 +1,105 @@
 import { useReveal } from "@/hooks/use-reveal"
-import { useState, type FormEvent } from "react"
 import { MagneticButton } from "@/components/magnetic-button"
-import Icon from "@/components/ui/icon"
 
-export function ContactSection() {
-  const { ref, isVisible } = useReveal(0.3)
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
+const conclusions = [
+  {
+    num: "01",
+    title: "Теория — это система",
+    text: "Не зубрёжка, а понимание логики ПДД. Решай билеты каждый день и разбирай каждую ошибку.",
+  },
+  {
+    num: "02",
+    title: "Практика — это повторение",
+    text: "Чем больше часов за рулём до экзамена, тем меньше стресса на нём. Автодром — до автоматизма.",
+  },
+  {
+    num: "03",
+    title: "Документы — заранее",
+    text: "Собери пакет документов за неделю до экзамена. Суета в последний момент добавляет лишний стресс.",
+  },
+  {
+    num: "04",
+    title: "График — это дисциплина",
+    text: "8 недель планомерной работы вместо недели ударного заучивания дают несравнимо лучший результат.",
+  },
+]
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    if (!formData.name || !formData.email || !formData.message) {
-      return
-    }
-
-    setIsSubmitting(true)
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    setIsSubmitting(false)
-    setSubmitSuccess(true)
-    setFormData({ name: "", email: "", message: "" })
-
-    setTimeout(() => setSubmitSuccess(false), 5000)
-  }
+export function ContactSection({ scrollToSection }: { scrollToSection?: (index: number) => void }) {
+  const { ref, isVisible } = useReveal(0.2)
 
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-4 pt-20 md:px-12 md:pt-0 lg:px-16"
+      className="flex h-screen w-screen shrink-0 snap-start items-start px-6 pt-24 pb-8 md:px-12 lg:px-16 overflow-y-auto"
+      style={{ scrollbarWidth: "none" }}
     >
       <div className="mx-auto w-full max-w-7xl">
-        <div className="grid gap-8 md:grid-cols-[1.2fr_1fr] md:gap-16 lg:gap-24">
-          <div className="flex flex-col justify-center">
+        <div
+          className={`mb-8 transition-all duration-700 ${
+            isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
+          }`}
+        >
+          <p className="font-mono text-xs text-foreground/50 mb-1">Заключение</p>
+          <h2 className="mb-1 font-sans text-4xl font-light leading-tight tracking-tight text-foreground md:text-5xl lg:text-6xl">
+            Итоги работы
+          </h2>
+          <p className="font-mono text-sm text-foreground/60">/ Четыре главных вывода</p>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4 mb-10">
+          {conclusions.map((c, i) => (
             <div
-              className={`mb-6 transition-all duration-700 md:mb-12 ${
-                isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
-              }`}
+              key={i}
+              className={`border-b border-foreground/15 pb-5 transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}
+              style={{ transitionDelay: `${100 + i * 120}ms` }}
             >
-              <h2 className="mb-2 font-sans text-4xl font-light leading-[1.05] tracking-tight text-foreground md:mb-3 md:text-7xl lg:text-8xl">
-                Остались
-                <br />
-                вопросы?
-              </h2>
-              <p className="font-mono text-xs text-foreground/60 md:text-base">/ Заключение · Свяжитесь с нами</p>
+              <div className="mb-3 flex items-center gap-3">
+                <span className="font-mono text-xs text-foreground/30">{c.num}</span>
+                <div className="h-px flex-1 bg-foreground/20" />
+              </div>
+              <h3 className="mb-2 font-sans text-lg font-light text-foreground">{c.title}</h3>
+              <p className="text-sm text-foreground/70 leading-relaxed">{c.text}</p>
             </div>
+          ))}
+        </div>
 
-            <div className="space-y-4 md:space-y-8">
-              <div
-                className={`transition-all duration-700 ${
-                  isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-                }`}
-                style={{ transitionDelay: "150ms" }}
-              >
-                <p className="max-w-md text-sm leading-relaxed text-foreground/80 md:text-base">
-                  Этот гайд создан, чтобы вы сдали права с первого раза. Если что-то осталось непонятным — напишите нам, и мы поможем разобраться.
-                </p>
-              </div>
-
-              <a
-                href="mailto:info@pravaspervogo.ru"
-                className={`group block transition-all duration-700 ${
-                  isVisible ? "translate-x-0 opacity-100" : "-translate-x-16 opacity-0"
-                }`}
-                style={{ transitionDelay: "200ms" }}
-              >
-                <div className="mb-1 flex items-center gap-2">
-                  <Icon name="Mail" size={12} className="text-foreground/60" />
-                  <span className="font-mono text-xs text-foreground/60">Email</span>
-                </div>
-                <p className="text-base text-foreground transition-colors group-hover:text-foreground/70 md:text-2xl">
-                  info@pravaspervogo.ru
-                </p>
-              </a>
-
-              <div
-                className={`transition-all duration-700 ${
-                  isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-                }`}
-                style={{ transitionDelay: "350ms" }}
-              >
-                <div className="mb-1 flex items-center gap-2">
-                  <Icon name="BookOpen" size={12} className="text-foreground/60" />
-                  <span className="font-mono text-xs text-foreground/60">Содержание гайда</span>
-                </div>
-                <p className="text-base text-foreground md:text-xl">Введение · Теория · Практика · 8-недельный план · Заключение</p>
-              </div>
-
-              <div
-                className={`flex gap-2 pt-2 transition-all duration-700 md:pt-4 ${
-                  isVisible ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"
-                }`}
-                style={{ transitionDelay: "500ms" }}
-              >
-                {["Telegram", "VK", "YouTube"].map((social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="border-b border-transparent font-mono text-xs text-foreground/60 transition-all hover:border-foreground/60 hover:text-foreground/90"
-                  >
-                    {social}
-                  </a>
-                ))}
-              </div>
+        <div
+          className={`grid gap-8 md:grid-cols-[1fr_auto] items-end transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}
+          style={{ transitionDelay: "600ms" }}
+        >
+          <div>
+            <p className="font-mono text-xs text-foreground/40 mb-3">Об этой работе</p>
+            <p className="max-w-2xl text-sm text-foreground/75 leading-relaxed mb-4">
+              Данная презентация создана в рамках учебного проекта. Все материалы основаны на официальных источниках: Правила дорожного движения РФ (Постановление Правительства № 1090), Административный регламент МВД по проведению экзаменов на право управления (Приказ МВД № 80), а также официальные экзаменационные билеты ГИБДД 2024 года.
+            </p>
+            <div className="flex flex-wrap gap-x-6 gap-y-1">
+              {[
+                "ПДД РФ — 24 раздела",
+                "40 официальных билетов ГИБДД",
+                "Приказ МВД № 80",
+                "Постановление Правительства № 1090",
+              ].map((src) => (
+                <span key={src} className="font-mono text-xs text-foreground/40">· {src}</span>
+              ))}
             </div>
           </div>
 
-          <div className="flex flex-col justify-center">
-            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
-              <div
-                className={`transition-all duration-700 ${
-                  isVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
-                }`}
-                style={{ transitionDelay: "200ms" }}
-              >
-                <label className="mb-1 block font-mono text-xs text-foreground/60 md:mb-2">Имя</label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                  className="w-full border-b border-foreground/30 bg-transparent py-1.5 text-sm text-foreground placeholder:text-foreground/40 focus:border-foreground/50 focus:outline-none md:py-2 md:text-base"
-                  placeholder="Ваше имя"
-                />
-              </div>
-
-              <div
-                className={`transition-all duration-700 ${
-                  isVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
-                }`}
-                style={{ transitionDelay: "350ms" }}
-              >
-                <label className="mb-1 block font-mono text-xs text-foreground/60 md:mb-2">Email</label>
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                  className="w-full border-b border-foreground/30 bg-transparent py-1.5 text-sm text-foreground placeholder:text-foreground/40 focus:border-foreground/50 focus:outline-none md:py-2 md:text-base"
-                  placeholder="your@email.com"
-                />
-              </div>
-
-              <div
-                className={`transition-all duration-700 ${
-                  isVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
-                }`}
-                style={{ transitionDelay: "500ms" }}
-              >
-                <label className="mb-1 block font-mono text-xs text-foreground/60 md:mb-2">Вопрос</label>
-                <textarea
-                  rows={3}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  required
-                  className="w-full border-b border-foreground/30 bg-transparent py-1.5 text-sm text-foreground placeholder:text-foreground/40 focus:border-foreground/50 focus:outline-none md:py-2 md:text-base"
-                  placeholder="Что хотите уточнить по теории или практике?"
-                />
-              </div>
-
-              <div
-                className={`transition-all duration-700 ${
-                  isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-                }`}
-                style={{ transitionDelay: "650ms" }}
-              >
-                <MagneticButton
-                  variant="primary"
-                  size="lg"
-                  className="w-full disabled:opacity-50"
-                >
-                  {isSubmitting ? "Отправка..." : "Отправить вопрос"}
-                </MagneticButton>
-                {submitSuccess && (
-                  <p className="mt-3 text-center font-mono text-sm text-foreground/80">Вопрос отправлен! Ответим в течение дня.</p>
-                )}
-              </div>
-            </form>
+          <div className="flex gap-3 flex-wrap">
+            <MagneticButton variant="primary" size="lg" onClick={() => scrollToSection?.(1)}>
+              Глава 1 — Теория
+            </MagneticButton>
+            <MagneticButton variant="secondary" size="lg" onClick={() => scrollToSection?.(2)}>
+              Глава 2 — Практика
+            </MagneticButton>
           </div>
+        </div>
+
+        <div
+          className={`mt-8 pt-5 border-t border-foreground/10 flex items-center justify-between transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+          style={{ transitionDelay: "750ms" }}
+        >
+          <span className="font-mono text-xs text-foreground/30">Учебный проект · 2024</span>
+          <span className="font-mono text-xs text-foreground/30">Как сдать на права с первого раза</span>
         </div>
       </div>
     </section>
